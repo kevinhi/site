@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Mobile Responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Fullscreen Sticky Navbar + Full Content</title>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- =========================
+       1) FULLSCREEN STICKY HEADER
+       ========================= -->
+  <header>
+    <img src="hero.png" class="banner" alt="Background Banner" />
+
+    <!-- Centered Logo Text (massive on load) -->
+    <a href="#" class="logo">Webarchitect.io</a>
+
+    <!-- The arrow that bounces (scrolls to #teenused) -->
+    <a href="#teenused" class="scroll-down-arrow">↓</a>
+
+    <!-- Toggle icon for mobile nav -->
+    <div class="toggle"></div>
+
+    <!-- Navigation -->
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#teenused">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- =========================
+       2) SCROLL INDICATOR (conic)
+       ========================= -->
+  <div class="scrollIndicator">
+    <div class="text">
+      <h2 id="textValue"></h2>
+    </div>
+  </div>
+
+  <!-- =========================
+       3) COLOR SELECTOR (changes BG)
+       ========================= -->
+  <div class="colors">
+    <!-- Each circle calls changeColor(this, '#COLOR') -->
+    <span onclick="changeColor(this, '#1dd1a1')" style="--clr:#1dd1a1;"></span>
+    <span onclick="changeColor(this, '#ff6b6b')" style="--clr:#ff6b6b;"></span>
+    <span onclick="changeColor(this, '#2e86de')" style="--clr:#2e86de;"></span>
+    <span onclick="changeColor(this, '#f368e0')" style="--clr:#f368e0;"></span>
+    <span onclick="changeColor(this, '#ff9f43')" style="--clr:#ff9f43;"></span>
+  </div>
+
+  <!-- =========================
+       4) MAIN CONTENT
+       (Margin-top: 50vh so it appears below
+       the big hero header, or you can remove
+       if you prefer the arrow to do the scrolling)
+       ========================= -->
+  <main style="margin-top: 50vh;">
+    <!-- NEON SERVICES -->
+    <section>
+      <div class="service-container">
+        <!-- Box #1 -->
+        <div class="service-box">
+          <span></span><span></span><span></span><span></span>
+          <div class="service-content">
+            <div>
+              <div class="service-icon">
+                <!-- Example SVG #1 -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="48" height="48">
+                  <path fill="#3B88C3" d="M18 0C8.059 0 0 8.059 0 18s8.059 18 18 18 18-8.059 18-18S27.941 0 18 0zM2.05 19h3.983c.092 2.506.522 4.871 1.229 7H4.158c-1.207-2.083-1.95-4.459-2.108-7zM19 8V2.081c2.747.436 5.162 2.655 6.799 5.919H19zm7.651 2c.754 2.083 1.219 4.46 1.317 7H19v-7h7.651zM17 2.081V8h-6.799C11.837 4.736 14.253 2.517 17 2.081zM17 10v7H8.032c.098-2.54.563-4.917 1.317-7H17zM6.034 17H2.05c.158-2.54.901-4.917 2.107-7h3.104c-.705 2.129-1.135 4.495-1.227 7zm1.998 2H17v7H9.349c-.754-2.083-1.219-4.459-1.317-7zM17 28v5.919c-2.747-.437-5.163-2.655-6.799-5.919H17zm2 5.919V28h6.8c-1.637 3.264-4.053 5.482-6.8 5.919zM19 26v-7h8.969c-.099 2.541-.563 4.917-1.317 7H19zm10.967-7h3.982c-.157 2.541-.9 4.917-2.107 7h-3.104c.706-2.129 1.136-4.494 1.229-7zm0-2c-.093-2.505-.523-4.871-1.229-7h3.104c1.207 2.083 1.95 4.46 2.107 7h-3.982z"/>
+                </svg>
+              </div>
+              <h2>SEO & Speed Optimization</h2>
+              <p>Faster loading times and better search engine visibility.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Box #2 -->
+        <div class="service-box">
+          <span></span><span></span><span></span><span></span>
+          <div class="service-content">
+            <div>
+              <div class="service-icon">
+                <!-- Example SVG #2 -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="48" height="48">
+                  <path fill="#8899A6" d="M34.247 6.324l-2.742 2.743s-1.829.914-3.657-.915c-1.829-1.828-.915-3.657-.915-3.657l2.743-2.743C30.591.838 29.492 0 28.667 0c-4.051 0-7.334 3.283-7.334 7.333 0 .569.072 1.121.194 1.653l-6.199 6.199 5.485 5.485 6.199-6.198c.533.122 1.084.194 1.654.194 4.05 0 7.333-3.283 7.333-7.333.001-.83-.838-1.923-1.752-1.009zm-19.027 9.04L3.031 27.552c-1.495 1.496-1.495 3.921 0 5.417 1.497 1.495 3.921 1.495 5.417 0l12.187-12.188-5.415-5.417zM5.763 31.838c-.819 0-1.482-.664-1.482-1.482s.664-1.483 1.482-1.483c.819 0 1.482.664 1.482 1.483 0 .818-.663 1.482-1.482 1.482z"/>
+                  <path fill="#F4900C" d="M30.83 33.279c1.166 1.166 3.022 1.221 4.121.121 1.1-1.1 1.045-2.955-.121-4.121L11.565 6.014c-1.167-1.167-3.021-1.221-4.121-.121-1.1 1.1-1.045 2.955.121 4.121L30.83 33.279z"/>
+                </svg>
+              </div>
+              <h2>Website Maintenance</h2>
+              <p>Regular updates and security checks to keep your site safe.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Box #3 -->
+        <div class="service-box">
+          <span></span><span></span><span></span><span></span>
+          <div class="service-content">
+            <div>
+              <div class="service-icon">
+                <!-- Example SVG #3 -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="48" height="48">
+                  <path fill="#A0041E" d="M1 17l8-7 16 1 1 16-7 8s.001-5.999-6-12-12-6-12-6z"/>
+                  <path fill="#FFAC33" d="M.973 35s-.036-7.979 2.985-11S15 21.187 15 21.187 14.999 29 11.999 32c-3 3-11.026 3-11.026 3z"/>
+                  <circle fill="#FFCC4D" cx="8.999" cy="27" r="4"/>
+                  <path fill="#55ACEE" d="M35.999 0s-10 0-22 10c-6 5-6 14-4 16s11 2 16-4c10-12 10-22 10-22z"/>
+                </svg>
+              </div>
+              <h2>E-commerce Solutions</h2>
+              <p>Full integration with secure payment gateways and product catalogs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEENUSED SECTION -->
+    <section id="teenused" class="teenuss-section">
+      <div class="container">
+        <h2 class="section-title">Meie Teenused</h2>
+        <div class="teenuss-grid">
+          <!-- Card #1 -->
+          <div class="teenus-card">
+            <div class="teenus-icon">
+              <!-- Reuse SVG #1 -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="48" height="48">
+                <path fill="#3B88C3" d="M18 0C8.059 0 0 8.059 0 18s8.059 18 18 18 18-8.059 18-18S27.941 0 18 0zM2.05 19h3.983c.092 2.506.522 4.871 1.229 7H4.158c-1.207-2.083-1.95-4.459-2.108-7zM19 8V2.081c2.747.436 5.162 2.655 6.799 5.919H19zm7.651 2c.754 2.083 1.219 4.46 1.317 7H19v-7h7.651zM17 2.081V8h-6.799C11.837 4.736 14.253 2.517 17 2.081zM17 10v7H8.032c.098-2.54.563-4.917 1.317-7H17zM6.034 17H2.05c.158-2.54.901-4.917 2.107-7h3.104c-.705 2.129-1.135 4.495-1.227 7zm1.998 2H17v7H9.349c-.754-2.083-1.219-4.459-1.317-7zM17 28v5.919c-2.747-.437-5.163-2.655-6.799-5.919H17zm2 5.919V28h6.8c-1.637 3.264-4.053 5.482-6.8 5.919zM19 26v-7h8.969c-.099 2.541-.563 4.917-1.317 7H19zm10.967-7h3.982c-.157 2.541-.9 4.917-2.107 7h-3.104c.706-2.129 1.136-4.494 1.229-7zm0-2c-.093-2.505-.523-4.871-1.229-7h3.104c1.207 2.083 1.95 4.46 2.107 7h-3.982z"/>
+              </svg>
+            </div>
+            <h3 class="teenus-title">Kodulehe Arendus</h3>
+            <p class="teenus-description">
+              Kaasaegsed, skaleeritavad veebilehed igale seadmele.
+            </p>
+          </div>
+          <!-- Card #2 -->
+          <div class="teenus-card">
+            <div class="teenus-icon">
+              <!-- Reuse SVG #2 -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="48" height="48">
+                <path fill="#8899A6" d="M34.247 6.324l-2.742 2.743s-1.829.914-3.657-.915c-1.829-1.828-.915-3.657-.915-3.657l2.743-2.743C30.591.838 29.492 0 28.667 0c-4.051 0-7.334 3.283-7.334 7.333 0 .569.072 1.121.194 1.653l-6.199 6.199 5.485 5.485 6.199-6.198c.533.122 1.084.194 1.654.194 4.05 0 7.333-3.283 7.333-7.333.001-.83-.838-1.923-1.752-1.009zm-19.027 9.04L3.031 27.552c-1.495 1.496-1.495 3.921 0 5.417 1.497 1.495 3.921 1.495 5.417 0l12.187-12.188-5.415-5.417zM5.763 31.838c-.819 0-1.482-.664-1.482-1.482s.664-1.483 1.482-1.483c.819 0 1.482.664 1.482 1.483 0 .818-.663 1.482-1.482 1.482z"/>
+                <path fill="#F4900C" d="M30.83 33.279c1.166 1.166 3.022 1.221 4.121.121 1.1-1.1 1.045-2.955-.121-4.121L11.565 6.014c-1.167-1.167-3.021-1.221-4.121-.121-1.1 1.1-1.045 2.955.121 4.121L30.83 33.279z"/>
+              </svg>
+            </div>
+            <h3 class="teenus-title">Veebihooldus</h3>
+            <p class="teenus-description">
+              Turvaparandused, versiooniuuendused, ja igapäevane järelevalve.
+            </p>
+          </div>
+          <!-- Card #3 -->
+          <div class="teenus-card">
+            <div class="teenus-icon">
+              <!-- Reuse SVG #3 -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="48" height="48">
+                <path fill="#A0041E" d="M1 17l8-7 16 1 1 16-7 8s.001-5.999-6-12-12-6-12-6z"/>
+                <path fill="#FFAC33" d="M.973 35s-.036-7.979 2.985-11S15 21.187 15 21.187 14.999 29 11.999 32c-3 3-11.026 3-11.026 3z"/>
+                <circle fill="#FFCC4D" cx="8.999" cy="27" r="4"/>
+                <path fill="#55ACEE" d="M35.999 0s-10 0-22 10c-6 5-6 14-4 16s11 2 16-4c10-12 10-22 10-22z"/>
+              </svg>
+            </div>
+            <h3 class="teenus-title">SEO & Kiiruse Tõstmine</h3>
+            <p class="teenus-description">
+              Aitame kodulehel kiiremini laadida ja paremini esile tõusta otsingus.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing" class="pricing-section">
+      <div class="pricing-wrapper">
+        <div class="pricing-container">
+          <!-- Card #1 -->
+          <div class="pricing-card">
+            <h4 class="package-type">START PAKETT</h4>
+            <h2>Ideaalne baasveebilahendus</h2>
+            <p>Perfektne lahendus üksikisikutele või väikeettevõtetele.</p>
+            <div class="price">Alates 600 €</div>
+            <ul>
+              <li>Kohandatav veebidisain</li>
+              <li>Põhjalik SEO analüüs</li>
+              <li>Reageeriv disain</li>
+              <li>Lihtne kasutajaliides</li>
+            </ul>
+            <button class="select-btn">Vali pakett</button>
+            <button class="toggle-info">Lisainfo</button>
+            <div class="extra-info">
+              <li>SSL-turvalisus ja andmekaitse</li>
+              <li>SEO tööriistade seadistamine</li>
+              <li>Kasutajatugi e-posti teel</li>
+            </div>
+          </div>
+          <!-- Card #2 -->
+          <div class="pricing-card ribbon">
+            <h4 class="package-type">STANDARD PAKETT</h4>
+            <h2>Soodne veebilahendus ettevõtetele</h2>
+            <p>
+              Alustavatele ettevõtetele mõeldud pakett, mis hõlmab
+              mitmelehelist disaini ja põhjalikku SEO optimeerimist.
+            </p>
+            <div class="price">Alates 1 200 €</div>
+            <ul>
+              <li>Kohandatud mitmeleheline disain</li>
+              <li>SEO optimeerimine ja sisu loomine</li>
+              <li>Blogi ja uudiste lisamine</li>
+              <li>Analytics ja külastajate jälgimine</li>
+              <li>E-posti tugi ja haldus</li>
+            </ul>
+            <button class="select-btn">Vali pakett</button>
+            <button class="toggle-info">Lisainfo</button>
+            <div class="extra-info">
+              <li>Sitemap ja Google Search Console seadistamine</li>
+              <li>Täiustatud turvalisus</li>
+              <li>Sotsiaalmeedia reklaamide integreerimine</li>
+              <li>SEO tööriistade seadistamine ja haldus</li>
+            </div>
+          </div>
+          <!-- Card #3 -->
+          <div class="pricing-card">
+            <h4 class="package-type">PLUSS PAKETT</h4>
+            <h2>Täielik e-poe lahendus</h2>
+            <p>Ideaalseks valikuks veebipoe käivitamiseks koos muretu haldusega.</p>
+            <div class="price">Alates 2 500 €</div>
+            <ul>
+              <li>Kuni 10 kohandatud lehte</li>
+              <li>WooCommerce integratsioon</li>
+              <li>Makseväravate integreerimine</li>
+              <li>15 GB kettamahtu</li>
+              <li>Tootehaldus ja inventuur</li>
+            </ul>
+            <button class="select-btn">Vali pakett</button>
+            <button class="toggle-info">Lisainfo</button>
+            <div class="extra-info">
+              <li>Kohandatavad lisafunktsioonid</li>
+              <li>Automaatne varundamine</li>
+              <li>Külastajate analüüs ja SEO tööriistad</li>
+              <li>Premium turvamonitor</li>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="portfolio-section">
+      <div class="container">
+        <h2 class="section-title">Meie Portfoolio</h2>
+        <div class="portfolio-filters">
+          <button class="filter-btn active" data-filter="all">Kõik</button>
+          <button class="filter-btn" data-filter="web">Veebilehed</button>
+          <button class="filter-btn" data-filter="design">Disain</button>
+          <button class="filter-btn" data-filter="app">Rakendused</button>
+        </div>
+        <div class="portfolio-grid">
+          <div class="portfolio-item" data-category="web">
+            <img
+              src="https://via.placeholder.com/600x400.png?text=Web+Project"
+              alt="Placeholder"
+            />
+            <div class="portfolio-overlay">
+              <h3>Projekt 1</h3>
+              <p>Veebilehe projekt</p>
+            </div>
+          </div>
+          <div class="portfolio-item" data-category="design">
+            <img
+              src="https://via.placeholder.com/600x400.png?text=Design+Project"
+              alt="Placeholder"
+            />
+            <div class="portfolio-overlay">
+              <h3>Projekt 2</h3>
+              <p>Disaini projekt</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================
+       5) FOOTER
+       ========================= -->
+  <footer>
+    <p>&copy; 2024 WEBARCHITECT.io. All rights reserved.</p>
+  </footer>
+
+  <!-- MAIN JS -->
+  <script src="script.js"></script>
+</body>
+</html>

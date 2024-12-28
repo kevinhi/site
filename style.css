@@ -1,0 +1,712 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
+
+/* RESET & GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Poppins', sans-serif; /* main font */
+  line-height: 1.6;
+  color: #333;
+  background-color: #000; /* default BG color, changeable by color picker */
+  overflow-x: hidden;
+}
+
+/* =========================
+   1) FULLSCREEN STICKY HEADER
+   ========================= */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh; /* Full screen on load */
+  width: 100%;
+  padding: 0 100px;
+  /* background: #000;  <-- REMOVED so it inherits body color */
+  transition: 1s;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 999;
+}
+header.sticky {
+  height: 80px; /* Shrinks after scroll */
+}
+/* Large center logo */
+header .logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15vw;
+  color: #fff;
+  z-index: 100;
+  transition: 1s;
+  font-weight: 700;
+  text-decoration: none;
+}
+header.sticky .logo {
+  font-size: 2em;
+  left: 100px;
+  transform: translate(0, -50%);
+}
+/* Fullscreen Banner Image */
+header img.banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: 1s;
+}
+header.sticky img.banner {
+  opacity: 0.5;
+}
+/* Nav (visible after .sticky) */
+nav {
+  position: relative;
+  display: flex;
+}
+nav ul {
+  position: relative;
+  margin: 0;
+  display: flex;
+  transition: 0.25s;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100px);
+}
+header.sticky nav ul {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition-delay: 0.75s;
+}
+nav ul li {
+  list-style: none;
+}
+nav ul li a {
+  color: #fff;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+nav ul li a:hover {
+  color: #ff275f;
+}
+/* Toggle for mobile nav */
+.toggle {
+  display: none;
+}
+
+/* =========================
+   ARROW ABOVE HERO
+   ========================= */
+.scroll-down-arrow {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  color: #FFC107;
+  text-decoration: none;
+  cursor: pointer;
+  animation: bounce 2s infinite;
+  z-index: 999;
+}
+@keyframes bounce {
+  0%, 20%, 60%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  80% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* =========================
+   SCROLL INDICATOR
+   ========================= */
+.scrollIndicator {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: conic-gradient(from 0deg, #008eff 0%, #f00 0deg, #000 0deg);
+  z-index: 9999;
+}
+.scrollIndicator .text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+.scrollIndicator .text h2 {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+}
+.scrollIndicator .text h2 span {
+  font-size: 0.7rem;
+}
+
+/* =========================
+   COLOR SELECTOR
+   ========================= */
+.colors {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  gap: 5px;
+  z-index: 9999;
+}
+.colors span {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--clr);
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+.colors span.active {
+  border: 4px solid #333;
+}
+
+/* =========================
+   4) NEON SERVICES
+   ========================= */
+.service-container {
+  /* background: var(--clr); <-- REMOVED */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  font-family: 'Racing Sans One', sans-serif;
+}
+.service-box {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a1a1f;
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+}
+.service-box:hover {
+  background: #03e9f4;
+  color: #050801;
+  z-index: 1000;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 10px #03e9f4;
+  transform: translateY(-10px);
+}
+.service-box span {
+  position: absolute;
+  display: block;
+}
+.service-box span:nth-child(1) {
+  top: 0; left: -100%;
+  width: 100%; height: 5px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: animate1 2s linear infinite;
+}
+@keyframes animate1 {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+.service-box span:nth-child(2) {
+  top: -100%; right: 0;
+  width: 5px; height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: animate2 2s linear infinite;
+  animation-delay: 0.5s;
+}
+@keyframes animate2 {
+  0% { top: -100%; }
+  50%, 100% { top: 100%; }
+}
+.service-box span:nth-child(3) {
+  bottom: 0; right: -100%;
+  width: 100%; height: 5px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: animate3 2s linear infinite;
+  animation-delay: 1s;
+}
+@keyframes animate3 {
+  0% { right: -100%; }
+  50%, 100% { right: 100%; }
+}
+.service-box span:nth-child(4) {
+  bottom: -100%; left: 0;
+  width: 5px; height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: animate4 2s linear infinite;
+  animation-delay: 1.5s;
+}
+@keyframes animate4 {
+  0% { bottom: -100%; }
+  50%, 100% { bottom: 100%; }
+}
+.service-box:hover span {
+  animation-play-state: paused;
+}
+.service-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  text-align: center;
+  color: #FFC107;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service-content h2 {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #FFC107;
+}
+.service-content h2::after {
+  content: "";
+  display: block;
+  width: 70px; 
+  height: 4px;
+  margin: 8px auto 0;
+  background-color: #03e9f4;
+  text-shadow: 0 0 1px #03e9f4, 0 0 2px #03e9f4, 0 0 3px #03e9f4, 0 0 4px #03e9f4;
+}
+.service-content p {
+  font-size: 1rem;
+}
+
+/* =========================
+   5) TEENUSED SECTION
+   ========================= */
+.teenuss-section {
+  padding: 50px;
+  /* No background set, remains transparent (body color shows) */
+}
+.section-title {
+  font-size: 3rem;
+  color: #FFC107;
+  position: relative;
+  text-align: center;
+  font-family: 'Racing Sans One', sans-serif;
+  margin-bottom: 20px;
+}
+.section-title::after {
+  content: '';
+  width: 70px;
+  height: 4px;
+  background: #FFC107;
+  position: absolute;
+  left: 50%;
+  bottom: 0px;
+  transform: translateX(-50%);
+}
+.teenuss-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.teenus-card {
+  flex: 0 0 30%;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  width: 30%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.teenus-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+@media (max-width: 992px) {
+  .teenuss-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .teenus-card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .teenus-card {
+    width: 100%;
+  }
+}
+.teenus-icon {
+  margin-bottom: 15px;
+}
+.teenus-title {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-family: 'Racing Sans One', sans-serif;
+  color: #FFC107;
+}
+.teenus-description {
+  font-size: 1rem;
+  color: #212529;
+}
+
+/* =========================
+   6) PRICING
+   ========================= */
+.pricing-section {
+  position: relative;
+  padding: 40px 20px;
+  overflow: visible;
+  /* No background set, remains transparent (body color shows) */
+}
+.pricing-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+  overflow: visible;
+}
+.pricing-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  z-index: 10;
+  overflow: visible;
+}
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 calc(33.33% - 20px);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+  min-height: 550px;
+  position: relative;
+  z-index: 100;
+}
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.pricing-card.ribbon::before {
+  content: 'PARIM DIIL';
+  font-family: 'Inter', sans-serif;
+  position: absolute;
+  top: 15px;
+  left: -10px;
+  background: #e63946;
+  color: #fff;
+  padding: 5px 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transform: rotate(-45deg);
+  z-index: 11;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.pricing-card h4 {
+  font-size: 1.2rem;
+  font-family: 'Racing Sans One', sans-serif;
+  color: #FFC107;
+  margin-bottom: 15px;
+}
+.pricing-card .price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #212529;
+  margin-bottom: 15px;
+}
+.pricing-card p {
+  font-size: 0.9rem;
+  color: #212529;
+  margin-bottom: 15px;
+}
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  font-size: 0.8rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #212529;
+}
+.pricing-card ul li {
+  margin: 5px 0;
+}
+.select-btn {
+  margin-top: auto;
+  background-color: #FFC107;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+.select-btn:hover {
+  background-color: #e0a806;
+}
+.toggle-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 10rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #252525;
+  background: #ddd;
+  position: relative;
+  overflow: hidden;
+}
+.toggle-info::after {
+  content: " ▼";
+  margin-left: 0.3rem;
+}
+.toggle-info.active::after {
+  content: " ▲";
+}
+.extra-info {
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
+  max-height: 0;
+  text-align: left;
+}
+.extra-info.open {
+  max-height: 500px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: #212529;
+  display: block;
+}
+@media (max-width: 992px) {
+  .pricing-card {
+    flex: 0 0 calc(50% - 20px);
+  }
+}
+@media (max-width: 576px) {
+  .pricing-card {
+    flex: 0 0 100%;
+  }
+}
+
+/* Optional spinning blur inside toggle-info button */
+.hoverEffect {
+  position: absolute;
+  bottom: 0; 
+  top: 0; 
+  left: 0; 
+  right: 0;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  z-index: 1;
+}
+.hoverEffect div {
+  background: linear-gradient(90deg,
+    rgba(222,0,75,1) 0%,
+    rgba(191,70,255,1) 49%,
+    rgba(0,212,255,1) 100%
+  );
+  border-radius: 40rem;
+  width: 10rem; 
+  height: 10rem;
+  filter: blur(20px);
+  animation: effect infinite 3s linear;
+  opacity: 0.5;
+}
+@keyframes effect {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* =========================
+   7) PORTFOLIO
+   ========================= */
+.portfolio-section {
+  padding: 60px 20px;
+  text-align: center;
+  /* No background set, remains transparent (body color shows) */
+}
+.portfolio-section .section-title {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #2726B4;
+}
+.portfolio-filters {
+  margin-bottom: 30px;
+}
+.filter-btn {
+  background: #FFC107;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.filter-btn.active,
+.filter-btn:hover {
+  background: #e0a806;
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+.portfolio-item:hover {
+  transform: scale(1.05);
+}
+.portfolio-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+.portfolio-overlay {
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  transition: opacity 0.3s;
+}
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .portfolio-section .section-title {
+    font-size: 2rem;
+  }
+  .filter-btn {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================
+   8) FOOTER
+   ========================= */
+footer {
+  /* background: #333; <-- REMOVED so it inherits body color */
+  text-align: center;
+  padding: 20px;
+}
+footer p {
+  color: #fff;
+}
+
+/* =========================
+   RESPONSIVE (MOBILE MENU)
+   ========================= */
+@media (max-width: 991px) {
+  header {
+    padding: 0 40px;
+  }
+  header.sticky .logo {
+    left: 40px;
+  }
+  header.sticky img.banner {
+    opacity: 0; /* fade out banner on sticky, for smaller screens */
+  }
+  nav ul {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+  nav.active ul {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 80px);
+    /* background: #000; <-- CHANGED to inherit */
+    background: inherit;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  nav ul li a {
+    font-size: 2em;
+  }
+  .toggle {
+    position: fixed;
+    top: 15px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background: #fff url('menu.png') center no-repeat;
+    background-size: 30px;
+    z-index: 10;
+    display: block; /* show the toggle on mobile */
+  }
+  .toggle.active {
+    background: #fff url('close.png') center no-repeat;
+    background-size: 25px;
+  }
+}
+
+/* =========================
+   OPTIONAL:
+   Tweak main { margin-top: 50vh; }
+   or remove it if you prefer the
+   arrow to do all the scrolling.
+   ========================= */
