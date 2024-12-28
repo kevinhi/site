@@ -29,8 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const scrollRatio = window.scrollY / maxHeight;
     const angle = scrollRatio * 360;
     const percent = Math.round(scrollRatio * 100);
-
-    indicator.style.background = `conic-gradient(from 0deg, #008eff 0%, #f00 ${angle}deg, #000 ${angle}deg)`;
     textValue.innerHTML = percent + '<span>%</span>';
   }
 
@@ -131,6 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
 function changeColor(el, color) {
   document.body.style.backgroundColor = color;
   document.querySelectorAll('.colors span').forEach(item => {
+    item.classList.remove('active');
+  });
+  el.classList.add('active');
+}
+function changeColor2(el, color2) {
+  document.body.style.color = color2;
+  document.querySelectorAll('.colors2 span').forEach(item => {
     item.classList.remove('active');
   });
   el.classList.add('active');
